@@ -11,7 +11,7 @@ if DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql
             import urllib.parse
             encoded_password = urllib.parse.quote_plus(password)
             rest = f"{username}:{encoded_password}@{host_part}"
-    DATABASE_URL = f"postgresql+pg8000://{rest}"
+    DATABASE_URL = f"postgresql://{rest}"
 
 # connect_args={"check_same_thread": False} is required only for SQLite
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
