@@ -1,10 +1,14 @@
+import os
+import sys
+# Add backend directory to sys.path to resolve imports on serverless platforms (like Vercel)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from app.database import create_db_and_tables
 from app.routers import auth, tasks, diet, study, ai
-import os
 
 app = FastAPI(title="TRAt API", description="Task & Routine Assistant/Tracker API")
 
