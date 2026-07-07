@@ -30,10 +30,11 @@ async def add_no_cache_header(request: Request, call_next):
         response.headers["Expires"] = "0"
     return response
 
-# Startup event
-@app.on_event("startup")
-def on_startup():
+# Ensure database tables are created on module import (crucial for serverless platforms like Vercel)
+try:
     create_db_and_tables()
+except Exception as db_err:
+    print(f"Database table creation warning: {db_err}", flush=True)
 
 # Include API Routers
 app.include_router(auth.router)
