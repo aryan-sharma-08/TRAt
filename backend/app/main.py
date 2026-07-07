@@ -1,5 +1,13 @@
 import os
 import sys
+import socket
+
+# Force IPv4 DNS resolution (Vercel serverless environments do not support outbound IPv6 routing)
+orig_getaddrinfo = socket.getaddrinfo
+def ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+socket.getaddrinfo = ipv4_only_getaddrinfo
+
 # Add backend directory to sys.path to resolve imports on serverless platforms (like Vercel)
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
