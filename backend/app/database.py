@@ -9,7 +9,9 @@ if DATABASE_URL.startswith("postgres://") or DATABASE_URL.startswith("postgresql
         if ":" in creds:
             username, password = creds.split(":", 1)
             import urllib.parse
-            encoded_password = urllib.parse.quote_plus(password)
+            # Decode first to prevent double-encoding if the user already URL-escaped it, then escape safely
+            clean_password = urllib.parse.unquote(password)
+            encoded_password = urllib.parse.quote_plus(clean_password)
             creds = f"{username}:{encoded_password}"
             
         # Parse host and port to resolve to IPv4 address (Vercel has no IPv6 outbound routing)
