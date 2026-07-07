@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: tract-app
+    env: docker
+    dockerfilePath: Dockerfile
+    dockerContext: .
+    plan: free
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false # Render will prompt you to enter this key securely during setup
