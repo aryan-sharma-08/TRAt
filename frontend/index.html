@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRAt - Task & Routine Assistant/Tracker</title>
+  
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/static/js/logo-192.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            darkbg: '#0b0f19',
+            darkcard: '#131b2e',
+            darkborder: '#1f293d',
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            },
+            accent: '#10b981',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            title: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/styles.css">
+
+</head>
+<body class="bg-darkbg text-slate-100 min-h-screen font-sans antialiased overflow-x-hidden">
+  
+  <div id="root">
+    <!-- Premium Loader before React boots -->
+    <div class="flex flex-col items-center justify-center min-h-screen space-y-4">
+      <div class="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div>
+      <h2 class="text-xl font-bold font-title tracking-wider text-slate-300">TRAt Loading...</h2>
+    </div>
+  </div>
+
+  <!-- Local React, ReactDOM and HTM UMD libraries -->
+  <script src="/static/js/lib/react.min.js"></script>
+  <script src="/static/js/lib/react-dom.min.js"></script>
+  <script src="/static/js/lib/htm.umd.js"></script>
+
+  <!-- Load main app entry point as standard ES Module -->
+  <script type="module" src="/static/js/app.js?v=1.1"></script>
+
+  <!-- Automatic Cache & Service Worker Cleanup to prevent cached syntax errors -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let reg of registrations) {
+          reg.unregister().then(() => console.log('[PWA] Unregistered service worker successfully.'));
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then((keys) => {
+        for (let key of keys) {
+          caches.delete(key).then(() => console.log('[PWA] Cleared cache:', key));
+        }
+      });
+    }
+  </script>
+</body>
+</html>

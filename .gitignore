@@ -1,0 +1,17 @@
+# Python virtual environment
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Local credentials and logs
+backend/.env
+backend/debug_key.txt
+
+# Local SQLite databases
+backend/track.db
+*.db
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

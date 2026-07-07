@@ -1,0 +1,160 @@
+/* TRAt Custom CSS */
+
+/* Glassmorphism effects */
+.glass {
+  background: rgba(19, 27, 46, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-card {
+  background: rgba(19, 27, 46, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+.glass-input {
+  background: rgba(11, 15, 25, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+.glass-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+  outline: none;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* Keyframes & Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Grid & Streaks animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s infinite;
+}
+
+/* Calendar Task Completion Density Classes */
+.density-none {
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.density-low {
+  background-color: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.density-medium {
+  background-color: rgba(99, 102, 241, 0.35);
+  border: 1px solid rgba(99, 102, 241, 0.4);
+}
+
+.density-high {
+  background-color: rgba(99, 102, 241, 0.6);
+  border: 1px solid rgba(99, 102, 241, 0.65);
+}
+
+.density-complete {
+  background-color: rgba(16, 185, 129, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.8);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+}
+
+/* Custom Checkbox styles */
+.custom-checkbox {
+  position: relative;
+  cursor: pointer;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: rgba(30, 41, 59, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+  border-color: #6366f1;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
